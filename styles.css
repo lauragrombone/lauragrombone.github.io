@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+body {
+	background-image: url("background.png");
+	background-repeat: no-repeat;
+	background-size: 100vw 100vh;
+	min-height: 100vh;
+	overflow: hidden;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+}
+
+#stage {
+	position: absolute;
+	height: 100vh;
+	width: 100vw;
+}
+
+.actor {
+	position: absolute;
+}
+
+.painting {
+	position: absolute;
+	visibility: hidden;
+	bottom: 40vh;
+	height: 25vw;
+	width: 25vw;
+}
+
+.fixture {
+	position: absolute;
+	visibility: hidden
+	height: 10vw;
+	left: 20vw;
+	bottom: 6vh;
+}
+
+#duck {
+	width: 20vw;
+	height: 20vw;
+	left: 40vw;
+	bottom: 6vh;
+	z-index: 1;
+}
+
+#ground {
+	position: absolute;
+	width: 100vw;
+	height: 4vh;
+	bottom: 0;
+	left: 0;
+}
