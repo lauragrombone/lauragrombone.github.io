@@ -41,7 +41,7 @@ function populate() {
 function populateFixtures() {
 	for (let i = 0; i < 3; i++) {
 		var img = document.createElement("img");
-		img.src = "fixtures/" + (i % 2) + ".png"
+		img.src = "fixtures/" + (1 + (i % 2)) + ".png"
 		img.classList.add("fixture");
 		img.style.visibility = "visible";
 		img.style.left = Math.round(vw * 0.1) + i * Math.round(vw * 0.66) + "px";
