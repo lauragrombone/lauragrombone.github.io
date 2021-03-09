@@ -41,7 +41,8 @@ function populate() {
 function populateFixtures() {
 	for (let i = 0; i < 3; i++) {
 		var img = document.createElement("img");
-		img.src = "fixtures/" + (1 + (i % 2)) + ".png"
+		img.src = "fixtures/" + (1 + (i % 3)) + ".png";
+		//if (i == 3) {img.id = "egg"};
 		img.classList.add("fixture");
 		img.style.visibility = "visible";
 		img.style.left = Math.round(vw * 0.1) + i * Math.round(vw * 0.66) + "px";
@@ -143,6 +144,7 @@ function keyDownHandler(e) {
 	if (e.keyCode == 32) {
 		spacePressed = true;
 	}
+	console.log(e.keyCode);
 }
 
 function keyUpHandler(e) {
