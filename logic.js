@@ -1,6 +1,6 @@
 var stage, paintings=[], paintingsOrigin=0, fixtures=[], fixtureQueue=[];
 var rightPressed=false, leftPressed=false, spacePressed=false, alt=false;
-const SPEED=10, SPACING=0.0833;
+const SPEED=15, SPACING=0.0833;
 var vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
 var maxOffset;
 
@@ -39,15 +39,18 @@ function populate() {
 }
 
 function populateFixtures() {
-	for (let i = 1; i <= 1; i++) {
+	for (let i = 0; i < 3; i++) {
 		var img = document.createElement("img");
-		img.src = "fixtures/" + 1 + ".png"
+		img.src = "fixtures/" + (i % 2) + ".png"
 		img.classList.add("fixture");
-		img.style.visibility = "visible"
+		img.style.visibility = "visible";
+		img.style.left = Math.round(vw * 0.1) + i * Math.round(vw * 0.66) + "px";
 		stage.appendChild(img);
-		fixtures.push(img)
+		fixtures.push(img);
 	}
 }
+
+
 
 function update() {
 	//console.log("Updating");
@@ -103,10 +106,10 @@ function updateFixtures() {
 
 	for (let i = 0; i < fixtures.length; i++) {
 		let fixturePosition = parseInt(window.getComputedStyle(fixtures[i], null).getPropertyValue("left").split("px"), 10);
-		if (fixturePosition + fixtureSpeed < Math.round(vw * (-0.25))) {
-			fixturePosition = (fixturePosition + fixtureSpeed) + Math.round(vw * 1.5);
-		} else if (fixturePosition + fixtureSpeed > Math.round(vw * (1.25))) {
-			fixturePosition = (fixturePosition + fixtureSpeed) - Math.round(vw * 1.5);
+		if (fixturePosition + fixtureSpeed < Math.round(vw * (-.5))) {
+			fixturePosition = (fixturePosition + fixtureSpeed) + Math.round(vw * 2);
+		} else if (fixturePosition + fixtureSpeed > Math.round(vw * (1.5))) {
+			fixturePosition = (fixturePosition + fixtureSpeed) - Math.round(vw * 2);
 		}
 		fixtures[i].style.left = fixturePosition + fixtureSpeed + "px";
 	}
