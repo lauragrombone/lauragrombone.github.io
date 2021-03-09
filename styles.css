@@ -37,6 +37,10 @@ body {
 	bottom: 6vh;
 }
 
+#egg {
+	height: 10vw;
+}
+
 #duck {
 	width: 20vw;
 	height: 20vw;

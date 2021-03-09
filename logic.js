@@ -1,4 +1,4 @@
-var stage, paintings=[], paintingsOrigin=0, fixtures=[], fixtureQueue=[];
+var stage, paintings=[], paintingsOrigin=0, fixtures=[], altList=[3, 5, 9, 10, 11], altPaintings=[];
 var rightPressed=false, leftPressed=false, spacePressed=false, alt=false;
 const SPEED=15, SPACING=0.0833;
 var vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
@@ -32,9 +32,18 @@ function populate() {
 		img.classList.add("painting");
 		img.style.visibility = "visible";
 		stage.appendChild(img);
-		paintings.push(img)
+		paintings.push(img);
 	}
 	maxOffset = Math.round((paintings.length * (0.25 + SPACING)) * vw); // in terms of pixels
+
+	for (let i = 0; i < altList.length; i++) {
+		var img = document.createElement("img");
+		img.src = "paintings/" + altList[i] + "-alt.png";
+		img.classList.add("painting");
+		stage.appendChild(img);
+		altPaintings.push(img);
+	} 
+
 	updatePaintings();
 }
 
@@ -74,6 +83,9 @@ function updatePaintings() {
 
 	for (let i = 0; i < paintings.length; i++) {
 		paintings[i].style.left = (((paintingsOrigin + Math.round((0.25 + SPACING) * i * vw)) % maxOffset) - Math.round((0.25 + SPACING) * 3) * vw) + "px";
+		if (altList.includes(i + 1) == true) {
+			altPaintings[altList.indexOf(i + 1)].style.left = (((paintingsOrigin + Math.round((0.25 + SPACING) * i * vw)) % maxOffset) - Math.round((0.25 + SPACING) * 3) * vw) + "px";
+		}
 	}
 }
 
@@ -119,15 +131,35 @@ function updateFixtures() {
 }
 
 function alternate() {
+	
+
 	if (spacePressed == true && alt == false) {
+		
+		/*
 		for (var i = 0; i < paintings.length; i++) {
 			paintings[i].src = "paintings/" + (i + 1) + "-alt.png"	
-		}	
+		} */
+		for (var i = 0; i < paintings.length; i++) {
+			if (altList.includes(i + 1) == true) {
+				paintings[i].style.visibility = "hidden";
+				altPaintings[altList.indexOf(i + 1)].style.visibility = "visible";
+			}
+		}
+
 		alt = true;
 	} else if (spacePressed == false && alt == true) {
+
+		/*
 		for (var i = 0; i < paintings.length; i++) {
 			paintings[i].src = "paintings/" + (i + 1) + ".png"	
+		} */
+		for (var i = 0; i < paintings.length; i++) {
+			if (altList.includes(i + 1) == true) {
+				paintings[i].style.visibility = "visible";
+				altPaintings[altList.indexOf(i + 1)].style.visibility = "hidden";
+			}
 		}
+
 		alt = false;
 	}
 }
