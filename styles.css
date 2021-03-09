@@ -31,8 +31,8 @@ body {
 
 .fixture {
 	position: absolute;
-	visibility: hidden
-	height: 10vw;
+	visibility: hidden;
+	height: 20vw;
 	left: 20vw;
 	bottom: 6vh;
 }
